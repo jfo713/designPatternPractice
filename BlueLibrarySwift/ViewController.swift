@@ -26,10 +26,11 @@ class ViewController: UIViewController {
 
 	@IBOutlet var dataTable: UITableView!
 	@IBOutlet var toolbar: UIToolbar!
+    @IBOutlet var scroller :HorizontalScroller!
     
-    private var allAlbums = [Album]()
+    var allAlbums = [Album]()
     var currentAlbumData : (titles :[String], values :[String])?
-    private var currentAlbumIndex = 0
+    var currentAlbumIndex = 0
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -41,6 +42,8 @@ class ViewController: UIViewController {
         dataTable.backgroundView = nil
         view.addSubview(dataTable!)
         self.showDataForAlbum(albumIndex: currentAlbumIndex)
+        scroller.delegate = self
+        reloadScroller()
 	}
     
     func showDataForAlbum(albumIndex :Int) {
@@ -53,6 +56,18 @@ class ViewController: UIViewController {
             currentAlbumData = nil
         }
         dataTable!.reloadData()
+    }
+    
+    func reloadScroller() {
+        allAlbums = LibraryAPI.sharedInstance.getAlbums()
+        if currentAlbumIndex < 0 {
+            currentAlbumIndex = 0
+        }
+        else if currentAlbumIndex >= allAlbums.count {
+            currentAlbumIndex = allAlbums.count-1
+        }
+        scroller.reload()
+        showDataForAlbum(albumIndex: currentAlbumIndex)
     }
 
 	override func didReceiveMemoryWarning() {
@@ -72,7 +87,7 @@ extension ViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell :UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! UITableViewCell
+        let cell :UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) 
         if let albumData = currentAlbumData {
             cell.textLabel!.text = albumData.titles[indexPath.row]
             cell.detailTextLabel!.text = albumData.values[indexPath.row]
@@ -84,4 +99,35 @@ extension ViewController : UITableViewDataSource {
 extension ViewController : UITableViewDelegate {
     
 }
+
+extension ViewController : HorizontalScrollerDelegate {
+    func horizontalScrollerClickedAtIndex(scroller: HorizontalScroller, index: Int) {
+        let previousAlbumView = scroller.viewAtIndex(index: currentAlbumIndex) as! AlbumView
+        previousAlbumView.highlightAlbum(didHighlightView: false)
+        currentAlbumIndex = index
+        let albumView = scroller.viewAtIndex(index: index) as! AlbumView
+        albumView.highlightAlbum(didHighlightView: true)
+        showDataForAlbum(albumIndex: index)
+    }
+    
+    func numberOfViewsForHorizontalScroller(scroller: HorizontalScroller) -> Int {
+        return allAlbums.count
+    }
+    
+    func horizontalScrollerViewAtIndex(scroller: HorizontalScroller, index: Int) -> UIView {
+        let album = allAlbums[index]
+        let albumView = AlbumView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), albumCover: album.coverUrl)
+        if currentAlbumIndex == index {
+            albumView.highlightAlbum(didHighlightView: true)
+        }
+        else {
+            albumView.highlightAlbum(didHighlightView: false)
+        }
+        return albumView
+    }
+    
+
+}
+
+
 

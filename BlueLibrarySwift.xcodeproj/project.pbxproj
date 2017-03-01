@@ -19,6 +19,7 @@
 		2BF6A6601E67609F006E79E8 /* LibraryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6A65F1E67609F006E79E8 /* LibraryAPI.swift */; };
 		2BF6A6621E6761F8006E79E8 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6A6611E6761F8006E79E8 /* PersistenceManager.swift */; };
 		2BF6A6641E67682A006E79E8 /* AlbumExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6A6631E67682A006E79E8 /* AlbumExtension.swift */; };
+		2BF6A6661E6773E3006E79E8 /* HorizontalScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6A6651E6773E3006E79E8 /* HorizontalScroller.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		2BF6A65F1E67609F006E79E8 /* LibraryAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryAPI.swift; sourceTree = "<group>"; };
 		2BF6A6611E6761F8006E79E8 /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		2BF6A6631E67682A006E79E8 /* AlbumExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumExtension.swift; sourceTree = "<group>"; };
+		2BF6A6651E6773E3006E79E8 /* HorizontalScroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalScroller.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,9 +91,9 @@
 		101DD6C71A052EDE00161F0D /* BlueLibrarySwift */ = {
 			isa = PBXGroup;
 			children = (
+				101DD6CE1A052EDE00161F0D /* Main.storyboard */,
 				101DD6EA1A052EE400161F0D /* API */,
 				101DD6CA1A052EDE00161F0D /* AppDelegate.swift */,
-				101DD6CE1A052EDE00161F0D /* Main.storyboard */,
 				2BF6A65C1E675F3D006E79E8 /* Views */,
 				2BF6A65E1E675F53006E79E8 /* Models */,
 				2BF6A65D1E675F46006E79E8 /* Controllers */,
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				2BF6A65A1E675B43006E79E8 /* AlbumView.swift */,
+				2BF6A6651E6773E3006E79E8 /* HorizontalScroller.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				2BF6A6641E67682A006E79E8 /* AlbumExtension.swift in Sources */,
 				2BF6A6621E6761F8006E79E8 /* PersistenceManager.swift in Sources */,
 				101DD6CB1A052EDE00161F0D /* AppDelegate.swift in Sources */,
+				2BF6A6661E6773E3006E79E8 /* HorizontalScroller.swift in Sources */,
 				2BF6A6601E67609F006E79E8 /* LibraryAPI.swift in Sources */,
 				101DD6EC1A052F0E00161F0D /* HTTPClient.swift in Sources */,
 				2BF6A65B1E675B43006E79E8 /* AlbumView.swift in Sources */,
